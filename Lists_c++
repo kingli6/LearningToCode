@@ -1,1 +1,9 @@
 /* Learning LISTS */ 
+
+/* Git commands
+git status 					//updates the files?
+git commit -a -m "Message here"				// - a for "all", -m for "message"
+
+$ git config --list   // list of global configurations...
+
+*/
