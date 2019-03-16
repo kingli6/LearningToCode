@@ -1,9 +1,28 @@
 /* Learning LISTS */ 
 
 /* Git commands
+<<<<<<< HEAD
+git status 					//updates the files? Checks for updates
+git commit -a -m "Message here"				// - a for "all", -m for "message"
+git log -2						//shows logs, -2 for last two commits.
+git remote -v					// shows me the link to the origin
+git push origin	master			// push it to Github? if that's the only remote thing you have
+
+
+
+-----------
+$ git config --list   // list of global configurations...
+
+Vim
+------
+:q  // to quit vim if you get into it on the terminal
+
+*/
+=======
 git status 					              //updates the files?
 git commit -a -m "Message here"		// - a for "all", -m for "message"
 
 $ git config --list               // list of global configurations...
 
 */
+>>>>>>> aeb8ace7d187e548ec123a35bf46f37b30ce59c8
