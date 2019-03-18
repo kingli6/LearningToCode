@@ -10,9 +10,6 @@ int main() {
     insertionSort (thisBigArray);
 }
 
-
-
-
 void insertionSort(int thisBigArray){
 
     int array[thisBigArray];
@@ -32,27 +29,26 @@ void insertionSort(int thisBigArray){
     cout << "}"<< '\n';
 
     for (int i = 0; i < thisBigArray; i++ ){     //finding the smallest index
-        int index_Plus1 = i ;
-        int index_of_smallest_value;
-        for (int i = index_Plus1 + 1; i < thisBigArray; i++){
-            if ( array[ i ] < array[ index_Plus1 ]){
-                index_of_smallest_value = i;
+    int index_of_smallest_value = i ;
+
+        for (int j = i + 1; j < thisBigArray; j++){
+            if ( array[ j ] < array[ index_of_smallest_value ]){   
+                index_of_smallest_value = j;       
             }
         }
-
-        int first_index = i;
-        int temp = array [ first_index ];
-        array[first_index] = array[ index_of_smallest_value];
+        
+        int temp = array [ i ];                 // Switching the array here
+        array[ i ] = array[ index_of_smallest_value ];
         array[index_of_smallest_value] = temp;
     }
 
-    cout << "Sorted Array: ";     //print Original array
+    cout << "Sorted Array: ";     //print Sorted array
     cout << "{";
-    for (int i = 0; i < thisBigArray; i++){
-        if (i != 0 ) {
+    for (int k = 0; k < thisBigArray; k++){
+        if (k != 0 ) {
             cout <<", ";
         }
-        cout << array[ i ];
+        cout << array[ k ];
     }
     cout << "}"<< '\n';
 }
