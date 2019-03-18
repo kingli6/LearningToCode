@@ -3,7 +3,7 @@ Hello!
 I'm following the book "Jumping_into_c++.
 Task is to turn a SortingArray program into a function in another program where the user gets to choose how big the array can be. 
 This program was built with many functions and i'm trying to merg everything into the main()
-
+```
 /////Original Program//////
 
 #include <iostream>		// ARRAY SORT "Insertion sort"
@@ -62,9 +62,10 @@ int main(){
     cout << "Original array: ";
     displayArray( array, 10 );
     cout << '\n';
-
+    
     sort ( array, 10 );
     cout << "Sorted array: ";
     displayArray( array, 10 );
     cout << '\n';
 }
+```
