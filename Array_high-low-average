@@ -1,0 +1,88 @@
+´´´
+#include <iostream>       // Array; print out 50 values with it´s mean, highest, lowest...
+#include <ctime>
+#include <stdlib.h>
+using namespace std;
+//take in 50 values
+//print out highest, lowest, average, and all the 50 input values one per line.
+//
+void creatArray(int array[], int size);
+void printArray(int array[], int size);
+int highestArray(int array[], int size);
+int lowestArray(int array[], int size);
+void average(int array[], int size);
+void PrintOPL ( int array[], int size); //print one per line
+int main(){
+    int size;
+    cout << "How big do you want your array to be?: ";
+    cin >> size;
+    int array[size];
+    creatArray(array, size);
+    printArray(array, size);
+    cout << "Highest: " << highestArray(array, size) << endl ;
+    cout << "Lowest: " << lowestArray(array, size) << endl;
+    average(array, size);
+    PrintOPL(array, size);
+}
+
+void creatArray (int array[], int size){
+    srand(time(NULL));
+    for (int i = 0; i < size; i++){
+        array[ i ] = rand() % 100;
+    }
+}
+
+void printArray(int array[], int size){
+    cout << "Original Array: ";
+    cout << "{";
+    for (int i = 0; i < size; i++){
+        if (i != 0) {
+            cout << ", ";
+        }
+        cout << array[ i ];
+    }
+    cout << "}\n";
+}
+
+int highestArray(int array[], int size){
+    for (int i = 0; i < size; i++){
+        //Go through the indecies
+        int index = i;
+        for ( int i = index + 1; i < size; i++){
+            if ( array[i] > array[index] ){
+                    index = i;
+            }
+        }
+        return array[index];
+    }int highestArray(int array[], int size);
+}
+
+int lowestArray(int array[], int size){
+    for (int i = 0; i < size; i++){
+        int index = i;
+        for ( int i = index + 1; i < size; i++){
+            if (array[ i ] < array[index] ){
+                index = i;
+            }
+        }
+        return array[index];
+    }
+}
+
+void average(int array[], int size){
+ float j = 0, T_Average;        // i had the float j with no value, and due to it j couldn't add in
+    for (int x = 0; x < size; x++){
+        j += array[x];
+    }
+    T_Average = j / size;           // you can divide float with int!   j is float and size is int.
+    cout << "total: "<< j<< endl << "Average Value: " << T_Average << endl;
+}
+
+void PrintOPL (int array[], int size){
+    for (int i = 0; i < size; i++){
+        if (i != 0){
+            cout << endl;
+        }
+        cout << array[i];
+    }
+}´´´
