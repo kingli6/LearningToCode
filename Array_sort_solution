@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+void insertionSort (int thisBigArray);
+int main() {
+    int thisBigArray;
+    cout << "How many arrays would you like?: "; cin >> thisBigArray;
+    insertionSort (thisBigArray);
+}
+
+void insertionSort(int thisBigArray){
+    int array[thisBigArray];
+    srand(time( NULL));
+    for (int i = 0; i < thisBigArray; i++){
+        array[ i ] = rand() % 100;
+    }
+ //print Original array
+    cout << "Original Array: ";
+    cout << "{";
+    for (int i = 0; i < thisBigArray; i++){
+        if (i != 0 ) {
+            cout <<", ";
+        }
+        cout << array[ i ];
+    }
+    cout << "}"<< '\n';
+
+    for (int i = 0; i < thisBigArray; i++ ){
+    int index_of_smallest_value = i;
+        //finding the smallest index
+        // Array    size   i
+        for (int j = i + 1; j < thisBigArray; j++){
+            if ( array[ j ] < array[ index_of_smallest_value ]){
+                index_of_smallest_value = j;            //// it keeps switching till it gets the smallest one!
+            }
+        }
+        //array, i, smallest index
+        int temp = array [ i ];
+        array[ i ] = array[ index_of_smallest_value ];
+        array[index_of_smallest_value] = temp;
+    }
+  //print Sorted array
+    cout << "Sorted Array: ";
+    cout << "{";
+    for (int k = 0; k < thisBigArray; k++){
+        if (k != 0 ) {
+            cout <<", ";
+        }
+        cout << array[ k ];
+    }
+    cout << "}"<< '\n';
+}
