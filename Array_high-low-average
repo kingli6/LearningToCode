@@ -1,10 +1,8 @@
-#include <iostream> 
-#include <ctime>           
+#include <iostream>             //take in 50 values in an ARRAY
+#include <ctime>            //print out highest, lowest, average, and all the 50 input values one per line.
 #include <stdlib.h>
 using namespace std;
-//take in 50 values
-//print out highest, lowest, average, and all the 50 input values one per line.
-//
+
 void creatArray(int array[], int size);
 void printArray(int array[], int size);
 int highestArray(int array[], int size);
