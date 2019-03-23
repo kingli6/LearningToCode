@@ -1,5 +1,5 @@
 # LearningToCode
-C++ Language and possibly other mess
+What you will find here is C++ Language training and possibly other mess
 
 Hello!
 Jonathan writing. I'm working towards becoming.. Product developer? Haven't figured this part out, to be honest.
