@@ -42,35 +42,31 @@ void printArray(int array[], int size){
 }
 
 int highestArray(int array[], int size){
-    for (int i = 0; i < size; i++){
-        int index = i;
+        int index = 0;
         for ( int i = index + 1; i < size; i++){    // i is the index to the right (for comparisons sake)
             if ( array[i] > array[index] ){
                     index = i;                  //it swaps with the higher index
             }
         }
         return array[index];
-    }
 }
 
 int lowestArray(int array[], int size){
-    for (int i = 0; i < size; i++){
-        int index = i;
+        int index = 0;
         for ( int i = index + 1; i < size; i++){
             if (array[ i ] < array[index] ){
                 index = i;
             }
         }
         return array[index];
-    }
 }
 
 void average(int array[], int size){
- float j = 0, T_Average;        // i had the float j with no value, and due to it j couldn't add in
+ float j = 0, T_Average;        // i had the float j with no value first, and due to it j didn't work
     for (int x = 0; x < size; x++){
         j += array[x];
     }
-    T_Average = j / size;           // you can divide float with int!   j is float and size is int.
+    T_Average = j / size;           // you can divide float with int!   j is a float and size is an int.
     cout << "total: "<< j<< endl << "Average Value: " << T_Average << endl;
 }
 
