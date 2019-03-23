@@ -40,15 +40,26 @@ void printArray(int array[], int size){
     }
     cout << "}\n";
 }
-
+/*
+Mind blunder
+I feel that the below loop can be shortened. But i can't rap my head around the function
+index + 1 is need for the loop to compare.
+THe top loop was unnecessary. I had to see the process of comparing and realizing that it IS possible to get
+the highest value without changing the array.
+Also the if statements and the return value is returning the INDEX and not the value IN the index..
+GET YOUR FUNDAMENTALS RIGHT!!!
+*/
 int highestArray(int array[], int size){
-        int index = 0;
-        for ( int i = index + 1; i < size; i++){    // i is the index to the right (for comparisons sake)
-            if ( array[i] > array[index] ){
-                    index = i;                  //it swaps with the higher index
-            }
+//    for (int i = 0; i < size; i++){
+//        int index = i;
+    int j = 0;
+    for ( int i = j + 1; i < size; i++){    // i is the index to the right (for comparisons sake)
+        if ( array[i] > array[j] ){
+                j = i;                  //it swaps with the higher index
         }
-        return array[index];
+    }
+    return array[j];
+//    }
 }
 
 int lowestArray(int array[], int size){
