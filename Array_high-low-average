@@ -1,6 +1,5 @@
-´´´
-#include <iostream>       // Array; print out 50 values with it´s mean, highest, lowest...
-#include <ctime>
+#include <iostream> 
+#include <ctime>           
 #include <stdlib.h>
 using namespace std;
 //take in 50 values
@@ -11,7 +10,7 @@ void printArray(int array[], int size);
 int highestArray(int array[], int size);
 int lowestArray(int array[], int size);
 void average(int array[], int size);
-void PrintOPL ( int array[], int size); //print one per line
+void PrintOPL ( int array[], int size); //print One Per Line
 int main(){
     int size;
     cout << "How big do you want your array to be?: ";
@@ -46,15 +45,14 @@ void printArray(int array[], int size){
 
 int highestArray(int array[], int size){
     for (int i = 0; i < size; i++){
-        //Go through the indecies
         int index = i;
-        for ( int i = index + 1; i < size; i++){
+        for ( int i = index + 1; i < size; i++){    // i is the index to the right (for comparisons sake)
             if ( array[i] > array[index] ){
-                    index = i;
+                    index = i;                  //it swaps with the higher index
             }
         }
         return array[index];
-    }int highestArray(int array[], int size);
+    }
 }
 
 int lowestArray(int array[], int size){
@@ -85,4 +83,4 @@ void PrintOPL (int array[], int size){
         }
         cout << array[i];
     }
-}´´´
+}
