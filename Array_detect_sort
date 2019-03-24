@@ -1,0 +1,59 @@
+/*
+*	Write a program that detects if a list is sorted or not, and if it is not sorted, sort it.(Page 123). 
+*
+*/
+
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+using namespace std;
+
+int main(){
+    srand(time(NULL));
+    int userInput, x =0;
+    bool sorted1, sorted2;
+    cout << "Yo, how big should your arrray be?: \n Oy, Make it more => 10: "; cin >> userInput;
+
+    int list[userInput];    //one should be sorted the other shouldn't be
+    int list2[userInput] = {0,1,2,3,4,5,6,7,8,9};
+
+    //create list input
+    for(int x = 0; x < 10; x++){
+        list[x] = rand() % 10;
+        cout << " List1 \n"<< list [ x ] ;
+        }
+        cout << '\n';
+
+    do{
+    cout << " List2\n"<< list2[ x ] ;
+    x++;
+    }while(x<10);
+    cout << '\n'<< " x is: " << x << endl;
+
+
+    //check list input
+
+    for ( int x = 0, j=1; x < userInput; x++, j++){
+        if (list[x] > list[j] ){ //if index 0 is greater than index to the right, return false
+            sorted1 = false;
+        }
+        if (list2[x] > list2[j] ){ //if index 0 is greater than index to the right, return false
+            sorted2 = false;
+        }
+    }
+
+
+    if (sorted1 != true )
+    {
+        cout << "list1 is not sorted\n" ;//sort list
+    }
+    else{
+        cout << "List1 IS sorted!\n";
+    }
+     if (sorted2 != true )
+    {
+        cout << "list2 is not sorted" ;//sort list
+    }
+    else{
+        cout << "List2 IS sorted!";
+    }
