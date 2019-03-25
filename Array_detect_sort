@@ -1,59 +1,92 @@
-/*
-*	Write a program that detects if a list is sorted or not, and if it is not sorted, sort it.(Page 123). 
-*
-*/
+
+//write a program that detects if a list is sorted or not, and if it is not, sorted, sort it.
 
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 using namespace std;
-
+bool checkSort( int LIST[], int userInput);
+int sort(int LIST[], int userInput);
+void printArray(int LIST[], int userInput);
 int main(){
     srand(time(NULL));
-    int userInput, x =0;
-    bool sorted1, sorted2;
-    cout << "Yo, how big should your arrray be?: \n Oy, Make it more => 10: "; cin >> userInput;
+    int userInput = 10; // array size
+    int Uinput;     // actual user input
+    int LIST[userInput];
+    bool CorrectInput = false;
 
-    int list[userInput];    //one should be sorted the other shouldn't be
-    int list2[userInput] = {0,1,2,3,4,5,6,7,8,9};
+    do{             //CHECK USER INPUT
+        cout << "Please choose 1. for ORDERED list or 2. for UNORDERED list: ";
+        cin >> Uinput;
 
-    //create list input
-    for(int x = 0; x < 10; x++){
-        list[x] = rand() % 10;
-        cout << " List1 \n"<< list [ x ] ;
+        if (Uinput == 1){
+            for(int x = 0; x < userInput; x++){
+                LIST[x] = x;
+            }
+            CorrectInput = true;
         }
-        cout << '\n';
-
-    do{
-    cout << " List2\n"<< list2[ x ] ;
-    x++;
-    }while(x<10);
-    cout << '\n'<< " x is: " << x << endl;
-
-
-    //check list input
-
-    for ( int x = 0, j=1; x < userInput; x++, j++){
-        if (list[x] > list[j] ){ //if index 0 is greater than index to the right, return false
-            sorted1 = false;
+        else if (Uinput == 2){
+            for(int x = 0; x < userInput; x++){
+                LIST[x] = rand() % userInput;
+            }
+            CorrectInput = true;
         }
-        if (list2[x] > list2[j] ){ //if index 0 is greater than index to the right, return false
-            sorted2 = false;
+        else{
+            cout << "Input error, try again.\n\n";
+        }
+    }while (CorrectInput == false);
+
+            //DETECT SORTED OR UNSORTED
+    if ( checkSort(LIST, userInput) == true) {
+        cout << "Lists are Ordered!" << endl;
+            for(int x = 0; x < userInput; x++){
+            cout << LIST[x] << endl;
+            }
+     }
+    else if (checkSort(LIST, userInput) == false){
+        cout << "Warning! Unordered list detected.." << endl << "Before sorting" << endl ;
+        printArray(LIST, userInput);
+
+        sort(LIST, userInput);
+        cout << endl << "After sorting" << endl ;
+        printArray(LIST, userInput);
+    }
+}
+    //FUNCTIONS
+bool checkSort( int LIST[], int userInput){
+bool sorted;
+    for (int j = 0; j < userInput; j++){
+         for ( int r = j+1; r < userInput; r++){
+            if (LIST[j] < LIST[r] ){ //if index 0 is lower than index to the right, return true
+                sorted = true;
+            }
+            else{
+                sorted = false;
+                return sorted;      // the return statement stops loop!!! escapes the for loop.
+            }
         }
     }
+    return sorted;
+}
 
+int sort(int LIST[], int userInput){
+    for (int x = 0; x < userInput; x++){
+        int placeholder = x;
+            for (int x = placeholder +1; x < userInput; x++){
+                if(LIST[x] < LIST[placeholder]){
+                    placeholder = x ;               // if index to the right is lesser, they switch position
+                }
+            }
+        //Switches index after finding low value. (Ascending order)
+            int temp = LIST[placeholder];         //lowest index is in the placeholder
+            LIST[placeholder] = LIST[x];     //value of x is here
+            LIST[x] = temp;
+    }
+}
 
-    if (sorted1 != true )
-    {
-        cout << "list1 is not sorted\n" ;//sort list
+void printArray(int LIST[], int userInput){
+    cout << endl ;
+    for (int x = 0; x < userInput; x++){
+        cout << LIST[x] << endl ;
     }
-    else{
-        cout << "List1 IS sorted!\n";
-    }
-     if (sorted2 != true )
-    {
-        cout << "list2 is not sorted" ;//sort list
-    }
-    else{
-        cout << "List2 IS sorted!";
-    }
+}
