@@ -1,0 +1,343 @@
+/*
+Write a small tic-tac-toe program that allows two players to play tic-tac-toe competitively.
+
+Your program should check to see if either player has won,
+or if the board is filled completely (with the game ending in a tie).
+
+Bonus: can you make your program detect if the game cannot be won
+by either side before the entire grid is filled?
+(Page 123)
+*/
+
+#include <iostream>
+using namespace std;
+
+enum TTT {blank, tttO, tttX};
+int SIZE = 3;         // haven't figured out how to get the size of the array through input from user. temp; using fixed value
+int BoardArray[3][3];
+int userO, userX;
+
+int gamecount = 0;      // useful for something in the future
+void BoardDisplay();
+void UserXinput();
+void UserOinput();
+void InsertXOonBoard(); // Outputting vaules on board
+bool whosTurn = true;   //trigger for knowing whose turn it is. true for O's, false for X's
+
+void Gameover();      //fucntion to check if the game is won or tied
+bool gameoverCheck = false, gametieCheck = false;
+
+
+int main(){
+
+  //***Initializing board**************
+
+      for (int x = 0; x < SIZE; ++x){
+          for (int j = 0; j < SIZE; ++j){
+              BoardArray[x][j] = blank ;
+          }
+      }
+  //***********************************
+
+  for (int x = 9; x > 0; x--){
+      BoardDisplay();
+      UserXinput();
+      BoardDisplay();
+      UserOinput();
+      gamecount += 1;
+  }
+
+}
+
+
+
+void BoardDisplay(){
+cout << "\n\t <<<<Tic Tac Toe Board>>>>\n\n";
+    for (int x = 0; x < SIZE; x++){
+        cout << "\t\t| ";
+        for (int j = 0; j < SIZE; j++){
+            if (BoardArray[x][j] == tttO){
+                cout <<  "O" << " | " ;
+            }
+            else if (BoardArray[x][j] == tttX){
+                cout <<  "X" << " | " ;
+            }
+            else if (BoardArray[x][j] == blank){
+                cout <<  " " << " | " ;
+            }
+        }
+    cout << '\n' ;
+        if (x < (SIZE - 1)){
+           cout << "\t\t-------------" << '\n';
+        }
+    }
+}
+
+//player actions
+void UserXinput(){      //Huge regret on not using array argument in funtion parameters, can be fixed but not yet...
+bool Userinput = false;
+whosTurn = false;
+  do{
+      cout << "PlayerX: ";
+      cin >> userX;
+      if(userX > 0 && userX <= (SIZE * SIZE)){//  -Not learn't how to exclude strings or other chars!!!!!! Crashes if user types letters or other chars
+          Userinput = true;
+      }
+      else {
+          Userinput = false ;
+      }
+  }while (Userinput == false);
+}
+
+void UserOinput(){
+bool Userinput = false;
+whosTurn = true;            //trigger for the next function to use O's turn if true or X's turn if false.
+  do{
+      cout << "PlayerO: ";
+      cin >> userO;
+      if(userX > 0 && userX <= (SIZE * SIZE)){        //Not learn't how to exclude strings or other chars!!!!!! Crashes if user types letters or other chars
+          Userinput = true;
+      }
+      //else if ( userX > Chars && < chars)
+      else {
+          Userinput = false ;
+      }
+  }while (Userinput == false);
+}
+
+// function to insert X & O in the board
+void InsertXOonBoard(){
+int IndexTicker = 1;       // for user input to match index number  ex 1 == [0][0] and 4 = [1][0] (for board 3*3)
+
+  for (int x = 0; x < SIZE; x++){
+      for (int y = 0; y < SIZE; y++){
+          //player Os output
+          if (whosTurn == true){
+              if (userO == IndexTicker){
+                  if ( BoardArray[x][y] == blank ){
+                      BoardArray[x][y] == tttO;
+                  }
+                  else{
+                  cout << "Try again: "; UserOinput();
+                  }
+              }
+          }
+          //player Xs output
+          if (whosTurn == false){
+              if (userX == IndexTicker){
+                  if ( BoardArray[x][y] == blank ){
+                      BoardArray[x][y] == tttX;
+                  }
+                  else{
+                  cout << "Try again: "; UserXinput();
+                  }
+              }
+          }
+          IndexTicker++;
+      }
+      IndexTicker++;
+  }
+}
+
+void Gameover(){
+int trigger = userO, userX;
+    switch (trigger){
+    case 2: {   if (BoardArray[0][1] == tttO && BoardArray[0][0] == tttO && BoardArray[0][2] == tttO){
+                    gameoverCheck = true;
+                }
+                else if ( gamecount >= 7 && BoardArray[0][1] == tttO && BoardArray[0][0] == blank && BoardArray[0][2] == blank){
+                    gametieCheck = true;
+                }
+            }
+    case 4:
+    case 5:
+    case 6:
+    case 8:
+    }
+}
+
+
+
+
+
+
+
+/*
+void Gamestart(int user ){
+    cout << "Welcome to tictactoe!";
+    do{
+        cout << "Board size: ";
+        cin >> user ;
+    }while(user > 0 && user < 5);
+}
+----------------------------------------------
+
+    int trigger = userX;
+    switch (trigger){
+    case 1: if (BoardArray[0][0] == blank){
+            BoardArray[0][0] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 2: if (BoardArray[0][1] == blank){
+            BoardArray[0][1] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 3: if (BoardArray[0][2] == blank){
+            BoardArray[0][2] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 4: if (BoardArray[1][0] == blank){
+            BoardArray[1][0] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 5: if (BoardArray[1][1] == blank){
+            BoardArray[1][1] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 6: if (BoardArray[1][2] == blank){
+            BoardArray[1][2] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 7: if (BoardArray[2][0] == blank){
+            BoardArray[2][0] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 8: if (BoardArray[2][1] == blank){
+            BoardArray[2][1] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    case 9: if (BoardArray[2][2] == blank){
+            BoardArray[2][2] = tttX;
+            }
+            else{
+                cout << "Try again: "; UserXinput();
+            } break;
+    }
+
+--------------------------------------------------------
+    int trigger = userO;
+    switch (trigger){
+    case 1: if (BoardArray[0][0] == blank){
+            BoardArray[0][0] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 2: if (BoardArray[0][1] == blank){
+            BoardArray[0][1] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 3: if (BoardArray[0][2] == blank){
+            BoardArray[0][2] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 4: if (BoardArray[1][0] == blank){
+            BoardArray[1][0] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 5: if (BoardArray[1][1] == blank){
+            BoardArray[1][1] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 6: if (BoardArray[1][2] == blank){
+            BoardArray[1][2] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 7: if (BoardArray[2][0] == blank){
+            BoardArray[2][0] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 8: if (BoardArray[2][1] == blank){
+            BoardArray[2][1] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    case 9: if (BoardArray[2][2] == blank){
+            BoardArray[2][2] = tttO;
+            }
+            else{
+                cout << "Try again: "; UserOinput();
+            } break;
+    }
+*/
+
+
+
+
+
+
+
+
+
+//    https://en.cppreference.com/w/
+
+//    https://aktieraketer.com/
+
+
+/*
+
+void displayBoard();
+int X_input (int playerX);
+int O_input (int playerO);
+
+enum BOARD{blank, ttt_x, ttt_o};
+int BOARD_Array[3][3] = {blank, blank, blank, blank, blank, blank, blank, blank, blank};
+int playerX, playerO;
+
+
+
+
+//board
+
+
+void displayBoard(){
+    //board
+    cout << '\n'<< '\n';
+    cout << "\t" ; Square1(); cout << " | " ; Square2(); cout << " | " ; Square3(); cout << endl ;
+    cout << "\t" <<" ------------- " << endl;
+    cout << "\t" ; Square4(); cout << " | " ; Square5(); cout << " | " ; Square6(); cout << endl ;
+    cout << "\t" <<" ------------- " << endl;
+    cout << "\t" ; Square7(); cout << " | " ; Square8(); cout << " | " ; Square9(); cout << endl ;
+    cout << '\n'<< '\n';
+}
+
+
+*/
+
+
+
+
+
+
+
+
+
